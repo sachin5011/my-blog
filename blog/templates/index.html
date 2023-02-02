@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+ {% block body %}
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('/static/assets/img/home-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>Clean Blog</h1>
+                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    
+                    <!-- Post preview-->
+                    {% for post in all_posts %}
+                    <div class="post-preview">
+                        <a href="{% url 'post_details' post.id %}">
+                            <h2 class="post-title">{{post.title}}</h2>
+                            <h3 class="post-subtitle">{{post.text | safe | slice:'100'}}</h3>
+                        </a>
+                        <p class="post-meta">
+                            Posted by
+                            <a href="#!">{{post.author}}</a>
+                            on {{post.published_date}}
+                        </p>
+                    </div>
+
+                    <div>
+                        <h1>text</h1>
+                    </div>
+                    <hr class="my-4" />
+                    
+                    {% endfor %}
+                    <!-- Divider-->
+                    
+                    <!-- Post preview-->
+                    
+                    <!-- Pager-->
+                    <div class="d-flex p-2 bd-highlight">
+                        <div class="d-flex justify-content-start mr-1">
+                            {% if all_posts.has_previous %}
+                            <a class="btn btn-primary text-uppercase" href="/?page={{ all_posts.previous_page_number }}"> << New Posts </a>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex justify-content-end mb-4">
+                            {% if all_posts.has_next %}
+                            <a class="btn btn-primary text-uppercase" href="/?page={{ all_posts.next_page_number }}">Older Posts >></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+{% endblock %}
