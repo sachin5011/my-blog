@@ -49,8 +49,6 @@ def post_details(request, pk):
     post_detail = Post.objects.get(id=pk)
     return render(request, 'post_details.html', {"post_detail": post_detail})
 
-def post_schedulr(request):
-    return render(request, 'schedul.html')
 
 def post_uploader(request):
 
